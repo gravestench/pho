@@ -1,7 +1,7 @@
 package point
 
 import (
-	"../../geom"
+	"github.com/gravestench/pho/geom"
 )
 
 func New(x, y float64) *Point {

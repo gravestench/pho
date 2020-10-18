@@ -1,24 +1,53 @@
 package circle
 
 import (
-	"../../geom"
-	"../point"
+	"github.com/gravestench/pho/geom"
+	"github.com/gravestench/pho/geom/point"
 )
 
 func New(x, y, radius float64) *Circle {
-	return &Circle{
+	c := &Circle{
 		Type: geom.Circle,
-		X: x,
-		Y: y,
-		radius: radius,
-		diameter: radius*2,
 	}
+
+	return c.SetPosition(x, y).SetRadius(radius)
 }
 
 type Circle struct {
-	Type geom.ShapeType
-	X, Y float64
+	Type             geom.ShapeType
+	X, Y             float64
 	radius, diameter float64
+}
+
+// Area returns the circle area
+func (c *Circle) Area() float64 {
+	return Area(c)
+}
+
+// Radius returns the circle radius
+func (c *Circle) Radius() float64 {
+	return c.radius
+}
+
+// SetRadius returns the circle radius, which also updates the diameter
+func (c *Circle) SetRadius(r float64) *Circle {
+	c.radius = r
+	c.diameter = r * 2
+
+	return c
+}
+
+// Diameter returns the circle diameter
+func (c *Circle) Diameter() float64 {
+	return c.diameter
+}
+
+// SetDiameter sets the circle diameter, which also updates the radius
+func (c *Circle) SetDiameter(d float64) *Circle {
+	c.diameter = d
+	c.radius = d / 2
+
+	return c
 }
 
 // Left returns the left position of the circle
@@ -80,4 +109,47 @@ func (c *Circle) GetPoints(quantity int, stepRate float64, points []*point.Point
 // Circumference returns the circumference of the given Circle.
 func (c *Circle) Circumference() float64 {
 	return Circumference(c)
+}
+
+// GetRandomPoint returns a uniformly distributed random point from anywhere within the given Circle
+func (c *Circle) GetRandomPoint(p *point.Point) *point.Point {
+	return GetRandomPoint(c, p)
+}
+
+// SetTo sets the x, y and radius of this circle.
+func (c *Circle) SetTo(x, y, radius float64) *Circle {
+	c.X, c.Y, c.radius = x, y, radius
+	c.diameter = 2 * radius
+
+	return c
+}
+
+// SetEmpty sets this Circle to be empty with a radius of zero.
+func (c *Circle) SetEmpty() *Circle {
+	c.radius = 0
+	c.diameter = 0
+
+	return c
+}
+
+// SetPosition sets the position of this circle
+func (c *Circle) SetPosition(x, y float64) *Circle {
+	c.X, c.Y = x, y
+
+	return c
+}
+
+// IsEmpty checks to see if the Circle is empty: has a radius of zero.
+func (c *Circle) IsEmpty() bool {
+	return c.radius <= 0
+}
+
+// Clone returns a clone of this circle
+func (c *Circle) Clone() *Circle {
+	return New(c.X, c.Y, c.radius)
+}
+
+// Copy the given circle x, y, and radius to this circle.
+func (c *Circle) Copy(from *Circle) *Circle {
+	return CopyFrom(c, from)
 }

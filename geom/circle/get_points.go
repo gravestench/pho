@@ -1,8 +1,8 @@
 package circle
 
 import (
-	"../../phomath"
-	"../point"
+	"github.com/gravestench/pho/geom/point"
+	"github.com/gravestench/pho/phomath"
 )
 
 const (

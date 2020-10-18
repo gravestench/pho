@@ -3,7 +3,7 @@ package circle
 import (
 	"math"
 
-	"../point"
+	"github.com/gravestench/pho/geom/point"
 )
 
 // CircumferencePoint returns a Point containing the coordinates of a point on the

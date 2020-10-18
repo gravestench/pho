@@ -1,7 +1,7 @@
 package circle
 
 import (
-	"../../phomath"
+	"github.com/gravestench/pho/phomath"
 )
 
 // Circumference returns the circumference of the given Circle.

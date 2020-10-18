@@ -1,8 +1,8 @@
 package circle
 
 import (
-	"../../phomath"
-	"../point"
+	"github.com/gravestench/pho/geom/point"
+	"github.com/gravestench/pho/phomath"
 )
 
 // GetPoint returns a Point object containing the coordinates of a point on the circumference of
