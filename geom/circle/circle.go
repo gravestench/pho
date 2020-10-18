@@ -95,6 +95,16 @@ func (c *Circle) Contains(x, y float64) bool {
 	return Contains(c, x, y)
 }
 
+// ContainsPoint checks to see if the Circle contains the given point.
+func (c *Circle) ContainsPoint(p *point.Point) bool {
+	return ContainsPoint(c, p)
+}
+
+// ContainsRectangle checks to see if the Circle contains the given rectangle.
+func (c *Circle) ContainsRectangle(r *rectangle.Rectangle) bool {
+	return ContainsRectangle(c, r)
+}
+
 // GetPoint returns a Point object containing the coordinates of a point on the circumference of
 // the Circle based on the given angle normalized to the range 0 to 1. I.e. a value of 0.5 will give
 // the point at 180 degrees around the circle.
