@@ -1,8 +1,9 @@
 package rectangle
 
 import (
-	"github.com/gravestench/pho/geom/point"
 	"math/rand"
+	
+	"github.com/gravestench/pho/geom/point"
 )
 
 // GetRandomPoint returns a random point within the Rectangle's bounds.

@@ -31,12 +31,12 @@ func (r *Rectangle) Area() float64 {
 	return r.Width * r.Height
 }
 
-// Left returns the left position of the circle
+// Left returns the left position of the rectangle
 func (r *Rectangle) Left() float64 {
 	return r.X
 }
 
-// SetLeft sets the left position of the circle, which also sets the x coordinate
+// SetLeft sets the left position of the rectangle, which also sets the x coordinate
 func (r *Rectangle) SetLeft(value float64) *Rectangle {
 	if value >= r.Right() {
 		r.Width = 0
@@ -48,10 +48,12 @@ func (r *Rectangle) SetLeft(value float64) *Rectangle {
 	return r
 }
 
+// Right returns the right position of the rectangle
 func (r *Rectangle) Right() float64 {
 	return r.X + r.Width
 }
 
+// SetRight sets the right position of the rectangle, which adjusts the width
 func (r *Rectangle) SetRight(value float64) *Rectangle {
 	if value <= r.X {
 		r.Width = 0
@@ -64,10 +66,12 @@ func (r *Rectangle) SetRight(value float64) *Rectangle {
 	return r
 }
 
+// Top returns the top position of the rectangle
 func (r *Rectangle) Top() float64 {
 	return r.Y
 }
 
+// SetTop sets the top position of the rectangle, which also adjusts the Y coordinate
 func (r *Rectangle) SetTop(value float64) *Rectangle {
 	if value >= r.Bottom() {
 		r.Height = 0
@@ -78,10 +82,12 @@ func (r *Rectangle) SetTop(value float64) *Rectangle {
 	return r
 }
 
+// Bottom returns the bottom position of the rectangle
 func (r *Rectangle) Bottom() float64 {
 	return r.Y + r.Height
 }
 
+// SetBottom sets the bottom position of the rectangle, which also adjusts the height
 func (r *Rectangle) SetBottom(value float64) *Rectangle {
 	if value <= r.Y {
 		r.Height = 0

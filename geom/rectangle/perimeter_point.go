@@ -1,9 +1,10 @@
 package rectangle
 
 import (
+	"math"
+
 	"github.com/gravestench/pho/geom/point"
 	"github.com/gravestench/pho/phomath"
-	"math"
 )
 
 func PerimeterPoint(r *Rectangle, angle float64, out *point.Point) *point.Point {

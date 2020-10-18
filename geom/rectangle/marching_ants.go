@@ -1,8 +1,9 @@
 package rectangle
 
 import (
-	"github.com/gravestench/pho/geom/point"
 	"math"
+
+	"github.com/gravestench/pho/geom/point"
 )
 
 const (

@@ -1,9 +1,10 @@
 package rectangle
 
 import (
+	"math/rand"
+
 	"github.com/gravestench/pho/geom/point"
 	"github.com/gravestench/pho/phomath"
-	"math/rand"
 )
 
 // Calculates a random point that lies within the `outer` Rectangle, but outside of the `inner`

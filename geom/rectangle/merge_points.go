@@ -1,8 +1,9 @@
 package rectangle
 
 import (
-	"github.com/gravestench/pho/geom/point"
 	"math"
+
+	"github.com/gravestench/pho/geom/point"
 )
 
 // Merges a Rectangle with a list of points by repositioning and/or resizing

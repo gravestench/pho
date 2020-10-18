@@ -20,15 +20,11 @@ func GetPoints(c *Circle, quantity int, stepRate float64, points []*point.Point)
 		points = make([]*point.Point, 0)
 	}
 
-	for len(points) < quantity {
-		points = append(points, nil)
-	}
-
 	for idx := 0; idx < quantity; idx++ {
 		percent := float64(idx) / float64(quantity)
 		angle := phomath.FromPercent(percent, 0, phomath.PI2)
 
-		points[idx] = CircumferencePoint(c, angle, nil)
+		points = append(points, CircumferencePoint(c, angle, nil))
 	}
 
 	return points

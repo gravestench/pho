@@ -6,5 +6,5 @@ func Contains(r *Rectangle, x, y float64) bool {
 		return false
 	}
 
-	return r.X <= x && r.X + r.Width >= x && r.Y <= y && r.Y + r.Height >= y
+	return r.X <= x && r.X+r.Width >= x && r.Y <= y && r.Y+r.Height >= y
 }

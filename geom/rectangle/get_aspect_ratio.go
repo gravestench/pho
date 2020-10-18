@@ -1,8 +1,9 @@
 package rectangle
 
 import (
-	"github.com/gravestench/pho/phomath"
 	"math"
+
+	"github.com/gravestench/pho/phomath"
 )
 
 // GetAspectRatio returns the aspect ratio (width/height) of the given rectangle
