@@ -1,4 +1,4 @@
-package pho
+package main
 
 import (
 	"github.com/gravestench/pho/geom/circle"
