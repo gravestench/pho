@@ -3,8 +3,10 @@ package circle
 import (
 	"github.com/gravestench/pho/geom"
 	"github.com/gravestench/pho/geom/point"
+	"github.com/gravestench/pho/geom/rectangle"
 )
 
+// New creates a new circle
 func New(x, y, radius float64) *Circle {
 	c := &Circle{
 		Type: geom.Circle,
@@ -152,4 +154,25 @@ func (c *Circle) Clone() *Circle {
 // Copy the given circle x, y, and radius to this circle.
 func (c *Circle) Copy(from *Circle) *Circle {
 	return CopyFrom(c, from)
+}
+
+// Equals compares the `x`, `y` and `radius` properties of this circle with the other circle.
+// Returns `true` if they all match, otherwise returns `false`.
+func (c *Circle) Equals(other *Circle) bool {
+	return Equals(c, other)
+}
+
+// GetBounds returns the bounds (a rectangle) of the Circle object.
+func (c *Circle) GetBounds(assignTo *rectangle.Rectangle) *rectangle.Rectangle {
+	return GetBounds(c, assignTo)
+}
+
+// Offset the circle position by the given x, y
+func (c *Circle) Offset(x, y float64) *Circle {
+	return Offset(c, x, y)
+}
+
+// OffsetPoint offsets the circle with the x,y of the given point
+func (c *Circle) OffsetPoint(p *point.Point) *Circle {
+	return Offset(c, p.X, p.Y)
 }
