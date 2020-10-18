@@ -31,12 +31,12 @@ func BresenhamPoints(l *Line, stepRate int, out []*point.Point) []*point.Point {
 
 	err := int(dx - dy)
 
-	out = append(out, point.New(x1, x2))
+	out = append(out, point.New(x1, y1))
 
 	idx := 1
 
 	// while x1,x2 and y1,y2 are not approximately equal
-	for !((x1-x2) < phomath.Epsilon && ((y1 - y2) < phomath.Epsilon)) {
+	for !(math.Abs(x1-x2) < phomath.Epsilon && (math.Abs(y1 - y2) < phomath.Epsilon)) {
 		e2 := err << 1
 
 		if e2 > int(-dy) {

@@ -1,9 +1,10 @@
 package line
 
 import (
+	"math"
+
 	"github.com/gravestench/pho/geom"
 	"github.com/gravestench/pho/geom/point"
-	"math"
 )
 
 // New creates a new line
