@@ -1,5 +1,9 @@
 package circle
 
+import (
+	"github.com/gravestench/pho/geom/rectangle"
+)
+
 // GetBounds returns the bounds (a rectangle) of the Circle object.
 func GetBounds(c *Circle, out *rectangle.Rectangle) *rectangle.Rectangle {
 	if out == nil {
