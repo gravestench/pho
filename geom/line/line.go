@@ -25,7 +25,7 @@ type Line struct {
 	X2, Y2 float64
 }
 
-// Length calculates the length of the given line.
+// Length calculates the length of the line.
 func (l *Line) Length() float64 {
 	return Length(l)
 }
@@ -145,17 +145,107 @@ func (l *Line) CenterOn(x, y float64) *Line {
 	return CenterOn(l, x, y)
 }
 
-// Clone creates a clone of this line
+// Clone creates a clone of the line
 func (l *Line) Clone() *Line {
 	return Clone(l)
 }
 
-// CopyFrom copies the values of one line to this line.
+// CopyFrom copies the values of one line to the line.
 func (l *Line) CopyFrom(from *Line) *Line {
 	return CopyFrom(from, l)
 }
 
-// Equals checks if this line is approximately equal to another
+// Equals checks if the line is approximately equal to another
 func (l *Line) Equals(other *Line) bool {
 	return Equals(l, other)
+}
+
+// GetMidPoint get the midpoint of the line.
+// Assigns to the `out` point, or creates one if nil.
+func (l *Line) GetMidPoint(out *point.Point) *point.Point {
+	return GetMidPoint(l, out)
+}
+
+// GetNearestPoint get the nearest point on a line perpendicular to the given point.
+func (l *Line) GetNearestPoint(p, out *point.Point) *point.Point {
+	return GetNearestPoint(l, p, out)
+}
+
+// GetNormal calculates the normal of the line.
+// The normal of a line is a vector that points perpendicular from it.
+func (l *Line) GetNormal(p, out *point.Point) *point.Point {
+	return GetNormal(l, p, out)
+}
+
+// GetShortestDistance get the shortest distance from a Line to the given Point.
+func (l *Line) GetShortestDistance(p *point.Point) float64 {
+	return GetShortestDistance(l, p)
+}
+
+// Height calculates the height of the line.
+func (l *Line) Height() float64 {
+	return Height(l)
+}
+
+// Width calculates the width of the given line.
+func (l *Line) Width() float64 {
+	return Width(l)
+}
+
+// NormalAngle get the angle of the normal of the line in radians.
+func (l *Line) NormalAngle() float64 {
+	return NormalAngle(l)
+}
+
+// NormalX returns the x component of the normal vector of the line.
+// The normal of a line is a vector that points perpendicular from it.
+func (l *Line) NormalX() float64 {
+	return NormalX(l)
+}
+
+// NormalX returns the x component of the normal vector of the line.
+// The normal of a line is a vector that points perpendicular from it.
+func (l *Line) NormalY() float64 {
+	return NormalY(l)
+}
+
+// Offset the line by the given amount.
+func (l *Line) Offset(x, y float64) *Line {
+	return Offset(l, x, y)
+}
+
+// PerpendicularSlope calculates the perpendicular slope of the line.
+func (l *Line) PerpendicularSlope() float64 {
+	return PerpendicularSlope(l)
+}
+
+// ReflectAngle calculates the reflected angle between the line and another line.
+// This is the outgoing angle based on the angle of Line 1 and the normalAngle of Line 2.
+func (l *Line) ReflectAngle(other *Line) float64 {
+	return ReflectAngle(l, other)
+}
+
+// Rotate a line around its midpoint by the given angle in radians.
+func (l *Line) Rotate(angle float64) *Line {
+	return Rotate(l, angle)
+}
+
+// RotateAroundPoint rotates a line around a point by the given angle in radians.
+func (l *Line) RotateAroundPoint(p *point.Point, angle float64) *Line {
+	return RotateAroundPoint(l, p, angle)
+}
+
+// RotateXY rotates a line around the given coordinates by the given angle in radians.
+func (l *Line) RotateAroundXY(x, y, angle float64) *Line {
+	return RotateAroundXY(l, x, y, angle)
+}
+
+// SetToAngle sets a line to a given position, angle and length.
+func (l *Line) SetToAngle(x, y, angle, length float64) *Line {
+	return SetToAngle(l, x, y, angle, length)
+}
+
+// Slope calculates the slope of the line.
+func (l *Line) Slope() float64 {
+	return Slope(l)
 }
