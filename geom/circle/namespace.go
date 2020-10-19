@@ -7,6 +7,7 @@ import (
 
 type CircleNamespace interface {
 	New(x, y, radius float64) *Circle
+	Clone(c *Circle) *Circle
 	Contains(c *Circle, x, y float64) bool
 	ContainsPoint(c *Circle, p *point.Point) bool
 	ContainsRectangle(c *Circle, r *rectangle.Rectangle) bool
@@ -24,6 +25,11 @@ type Namespace struct{}
 
 func (n *Namespace) New(x, y, radius float64) *Circle {
 	return New(x, y, radius)
+}
+
+// Clone returns a clone of this circle
+func (n *Namespace) Clone(c *Circle) *Circle {
+	return Clone(c)
 }
 
 // Contains checks to see if the Circle contains the given x / y coordinates.

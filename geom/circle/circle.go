@@ -158,7 +158,7 @@ func (c *Circle) IsEmpty() bool {
 
 // Clone returns a clone of this circle
 func (c *Circle) Clone() *Circle {
-	return New(c.X, c.Y, c.radius)
+	return Clone(c)
 }
 
 // Copy the given circle x, y, and radius to this circle.
