@@ -25,6 +25,11 @@ type Line struct {
 	X2, Y2 float64
 }
 
+// Length calculates the length of the given line.
+func (l *Line) Length() float64 {
+	return Length(l)
+}
+
 // Left returns the left position of the line
 func (l *Line) Left() float64 {
 	return math.Min(l.X1, l.X2)
@@ -133,4 +138,24 @@ func (l *Line) GetPointB(assignTo *point.Point) *point.Point {
 // Angle calculates the angle of the line in radians
 func (l *Line) Angle() float64 {
 	return Angle(l)
+}
+
+// CenterOn centers a line on the given coordinates.
+func (l *Line) CenterOn(x, y float64) *Line {
+	return CenterOn(l, x, y)
+}
+
+// Clone creates a clone of this line
+func (l *Line) Clone() *Line {
+	return Clone(l)
+}
+
+// CopyFrom copies the values of one line to this line.
+func (l *Line) CopyFrom(from *Line) *Line {
+	return CopyFrom(from, l)
+}
+
+// Equals checks if this line is approximately equal to another
+func (l *Line) Equals(other *Line) bool {
+	return Equals(l, other)
 }
