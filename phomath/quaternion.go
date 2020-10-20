@@ -38,22 +38,27 @@ func (q *Quaternion) XYZW() (x, y, z, w float64) {
 	return q.X, q.Y, q.Z, q.W
 }
 
+// SetX sets the x component and calls the OnChangeCallback function
 func (q *Quaternion) SetX(v float64) *Quaternion {
 	return q.Set(v, q.Y, q.Z, q.W)
 }
 
+// SetY sets the y component and calls the OnChangeCallback function
 func (q *Quaternion) SetY(v float64) *Quaternion {
 	return q.Set(q.X, v, q.Z, q.W)
 }
 
+// SetZ sets the z component and calls the OnChangeCallback function
 func (q *Quaternion) SetZ(v float64) *Quaternion {
 	return q.Set(q.X, q.Y, v, q.W)
 }
 
+// SetW sets the w component and calls the OnChangeCallback function
 func (q *Quaternion) SetW(v float64) *Quaternion {
 	return q.Set(q.X, q.Y, q.Z, v)
 }
 
+// Set the x, y, z, and w components of this quaternion and call the OnChangeCallback function
 func (q *Quaternion) Set(x, y, z, w float64) *Quaternion {
 	q.X, q.Y, q.Z, q.W = x, y, z, w
 
@@ -67,12 +72,12 @@ func (q *Quaternion) Clone() *Quaternion {
 	return NewQuaternion(q.XYZW())
 }
 
-// Copy
+// Copy the values of the given quaternion
 func (q *Quaternion) Copy(other *Quaternion) *Quaternion {
 	return q.Set(other.XYZW())
 }
 
-// Add
+// Add (sum) the given quaternion components to this quaternion
 func (q *Quaternion) Add(other *Quaternion) *Quaternion {
 	return q.Set(
 		q.X+other.X,
@@ -82,7 +87,7 @@ func (q *Quaternion) Add(other *Quaternion) *Quaternion {
 	)
 }
 
-// Subtract
+// Subtract the given quaternion components from this quaternion
 func (q *Quaternion) Subtract(other *Quaternion) *Quaternion {
 	return q.Set(
 		q.X-other.X,
@@ -92,7 +97,7 @@ func (q *Quaternion) Subtract(other *Quaternion) *Quaternion {
 	)
 }
 
-// Scale
+// Scale this quaternion's component values by a scalar
 func (q *Quaternion) Scale(s float64) *Quaternion {
 	return q.Set(
 		q.X*s,
@@ -102,17 +107,17 @@ func (q *Quaternion) Scale(s float64) *Quaternion {
 	)
 }
 
-// Length
+// Length returns the length, or magnitude, of this quaternion
 func (q *Quaternion) Length() float64 {
 	return math.Sqrt(q.LengthSquared())
 }
 
-// LengthSquared
+// LengthSquared returns the length, or magnitude, of this quaternion, squared
 func (q *Quaternion) LengthSquared() float64 {
 	return q.X*q.X + q.Y*q.Y + q.Z*q.Z + q.W*q.W
 }
 
-// Normalize
+// Normalize this quaternion to length of 1
 func (q *Quaternion) Normalize() *Quaternion {
 	l := q.LengthSquared()
 
@@ -123,12 +128,12 @@ func (q *Quaternion) Normalize() *Quaternion {
 	return q
 }
 
-// Dot
+// Dot calculates the dot product with the given quaternion
 func (q *Quaternion) Dot(other *Quaternion) float64 {
 	return q.X*other.X + q.Y*other.Y + q.Z*other.Z + q.W*other.W
 }
 
-// Lerp
+// Lerp linearly interpolates to the given quaternion
 func (q *Quaternion) Lerp(other *Quaternion, t float64) *Quaternion {
 	return q.Set(
 		q.X+t*(other.X-q.X),
@@ -138,7 +143,7 @@ func (q *Quaternion) Lerp(other *Quaternion, t float64) *Quaternion {
 	)
 }
 
-// RotationTo
+// RotationTo rotates this Quaternion based on the two given vectors.
 func (q *Quaternion) RotationTo(a, b *Vector3) *Quaternion {
 	dot := a.Dot(b)
 
@@ -168,7 +173,7 @@ func (q *Quaternion) RotationTo(a, b *Vector3) *Quaternion {
 	}
 }
 
-// SetAxes
+// SetAxes sets the axes of this Quaternion.
 func (q *Quaternion) SetAxes(view, right, up *Vector3) *Quaternion {
 	tmpMat3 := NewMatrix3(nil)
 
@@ -189,12 +194,12 @@ func (q *Quaternion) SetAxes(view, right, up *Vector3) *Quaternion {
 	return q.FromMatrix3(tmpMat3).Normalize()
 }
 
-// Identity
+// Identity returns the identity quaternion
 func (q *Quaternion) Identity() *Quaternion {
 	return q.Set(0, 0, 0, 1)
 }
 
-// SetAxisAngle
+// SetAxisAngle sets the axis angle of this Quaternion.
 func (q *Quaternion) SetAxisAngle(axis *Vector3, radians float64) *Quaternion {
 	radians = radians / 2
 	s := math.Sin(radians)
@@ -207,7 +212,7 @@ func (q *Quaternion) SetAxisAngle(axis *Vector3, radians float64) *Quaternion {
 	)
 }
 
-// Multiply
+// Multiply this quaternion by the given quaternion
 func (q *Quaternion) Multiply(other *Quaternion) *Quaternion {
 	return q.Set(
 		q.X*other.W+q.W*other.X+q.Y*other.Z-q.Z*other.Y,
@@ -217,7 +222,7 @@ func (q *Quaternion) Multiply(other *Quaternion) *Quaternion {
 	)
 }
 
-// Slerp
+// Slerp smoothly linaerly interpolate this Quaternion towards the given Quaternion or Vector.
 func (q *Quaternion) Slerp(other Vector4Like, t float64) *Quaternion {
 	ax, ay, az, aw := q.XYZW()
 	bx, by, bz, bw := other.XYZW()
@@ -256,7 +261,7 @@ func (q *Quaternion) Slerp(other Vector4Like, t float64) *Quaternion {
 	)
 }
 
-// Invert
+// Invert this quaternion
 func (q *Quaternion) Invert() *Quaternion {
 	dot := q.Clone().Dot(q)
 
@@ -267,12 +272,12 @@ func (q *Quaternion) Invert() *Quaternion {
 	return q.Conjugate().Scale(dot)
 }
 
-// Conjugate
+// Conjugate converts this Quaternion into its conjugate.
 func (q *Quaternion) Conjugate() *Quaternion {
 	return q.Set(-q.X, -q.Y, -q.Z, q.W)
 }
 
-// RotateX
+// RotateX rotates this quaternion on the x-axis.
 func (q *Quaternion) RotateX(radians float64) *Quaternion {
 	radians /= 2
 	bx, bw := math.Sin(radians), math.Cos(radians)
@@ -285,7 +290,7 @@ func (q *Quaternion) RotateX(radians float64) *Quaternion {
 	)
 }
 
-// RotateY
+// RotateY rotates this quaternion on the y-axis.
 func (q *Quaternion) RotateY(radians float64) *Quaternion {
 	radians /= 2
 	by, bw := math.Sin(radians), math.Cos(radians)
@@ -298,7 +303,7 @@ func (q *Quaternion) RotateY(radians float64) *Quaternion {
 	)
 }
 
-// RotateZ
+// RotateZ rotates this quaternion on the z-axis.
 func (q *Quaternion) RotateZ(radians float64) *Quaternion {
 	radians /= 2
 	bz, bw := math.Sin(radians), math.Cos(radians)
@@ -311,13 +316,13 @@ func (q *Quaternion) RotateZ(radians float64) *Quaternion {
 	)
 }
 
-// CalculateW
+// CalculateW creates a unit (or rotation) Quaternion from its x, y, and z components.
 func (q *Quaternion) CalculateW() *Quaternion {
 	x, y, z := q.XYZ()
 	return q.SetW(-math.Sqrt(1.0 - x*x - y*y - z*z))
 }
 
-// SetFromEuler
+// SetFromEuler sets this Quaternion from the given Euler, based on Euler order.
 func (q *Quaternion) SetFromEuler(e *Euler) *Quaternion {
 	x, y, z := e.X/2, e.Y/2, e.Z/2
 	c1, c2, c3 := math.Cos(x), math.Cos(y), math.Cos(z)
@@ -373,7 +378,7 @@ func (q *Quaternion) SetFromEuler(e *Euler) *Quaternion {
 	return q
 }
 
-// SetFromRotationMatrix
+// SetFromRotationMatrix sets the rotation of this Quaternion from the given Matrix4.
 func (q *Quaternion) SetFromRotationMatrix(m4 *Matrix4) *Quaternion {
 	m := m4.Values
 
@@ -430,7 +435,7 @@ func (q *Quaternion) SetFromRotationMatrix(m4 *Matrix4) *Quaternion {
 
 }
 
-// FromMatrix3
+// FromMatrix3 converts the given Matrix into this Quaternion.
 func (q *Quaternion) FromMatrix3(m3 *Matrix3) *Quaternion {
 	m := m3.Values
 	fTrace := m[0] + m[4] + m[8]

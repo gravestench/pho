@@ -641,9 +641,9 @@ func (m *Matrix4) Ortho(left, right, bottom, top, near, far float64) *Matrix4 {
 // LookAtRightHanded generates a right-handed look-at matrix with the given eye position,
 // target and up axis.
 func (m *Matrix4) LookAtRightHanded(eye, target, up *Vector3) *Matrix4 {
-	vz := NewVector3(0, 0, 0)
-	vx := vz.Clone()
-	vy := vz.Clone()
+	vz := eye.Clone().Subtract(target)
+	vx := NewVector3(0, 0, 0)
+	vy := NewVector3(0, 0, 0)
 
 	if vz.LengthSquared() == 0 {
 		// eye and target are in the same position
