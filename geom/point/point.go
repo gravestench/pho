@@ -19,6 +19,11 @@ type Point struct {
 	X, Y float64
 }
 
+// XY returns the x and y values
+func (p *Point) XY() (x, y float64) {
+	return p.X, p.Y
+}
+
 // SetTo sets the x and y coordinates of the point to the given values.
 func (p *Point) SetTo(x, y float64) *Point {
 	p.X, p.Y = x, y
